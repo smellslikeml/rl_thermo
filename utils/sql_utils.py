@@ -7,14 +7,14 @@ from operator import itemgetter
 from itertools import groupby
 
 config = configparser.ConfigParser()
-config.read('/home/pi/kindbot/config.ini')
+config.read('../config.ini')
 
 
 def create_tbl(table_name, schema_tup):
     conn = sqlite3.connect(config['PATHS']['DB_PATH'], timeout=30000)
     c = conn.cursor()
     c.execute('''drop table if exists {};'''.format(table_name))
-    c.execute('''create table {} 
+    c.execute('''create table {}
     {}'''.format(table_name, schema_tup))
     conn.commit()
     c.close()
@@ -105,7 +105,7 @@ def alert_check(stat, dev=1):
         c.close()
 
 if __name__ == '__main__':
-    table_dict = {'environ':'(date date, temp real, hum real, vpd real)', 
+    table_dict = {'environ':'(date date, temp real, hum real, vpd real)',
                   'devices':'(date text, plug int, duration real, energy_consumption real)',
                   'kindbot':'(date text, temp real, humid real, pid real, vpd real, ac text)',
                   'objects':'(img text, date text, flower int, yellow int, droop int, lai real)',

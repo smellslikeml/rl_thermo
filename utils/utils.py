@@ -8,13 +8,13 @@ from datetime import datetime
 from darkflow.net.build import TFNet
 
 config = configparser.ConfigParser()
-config.read('/home/pi/kindbot/config.ini')
+config.read('../config.ini')
 
 def on_off_bin(ac):
     if ac == 'on':
         return 1
     else:
-        return 0 
+        return 0
 
 def fmt_tup(tup):
     setpoint = float(config['DAYTIME']['SETPOINT'])
@@ -73,7 +73,7 @@ def gif_gen():
     with open('gif_list.txt', 'w') as gif_file:
         for itm in img_lsts:
             gif_file.write('%s\n' %itm)
-        
+
     subprocess.call('convert -delay 10 @gif_list.txt recent.gif', shell=True)
 
 def tl_photo(img_pth='/home/pi/timelapse/{}.jpg'.format(strftime("%Y%m%d-%H%M%S"))):
@@ -100,8 +100,8 @@ def annotate(imgcv, res, lbl):
     x_diff = max(int((x1 - x2) / 5), 5)
     y_diff = max(int((y1 - y2) / 5), 5)
 
-    color_dict = {'yellow_leaf': (0, 255, 255), 
-                  'flower': (0, 0, 255), 
+    color_dict = {'yellow_leaf': (0, 255, 255),
+                  'flower': (0, 0, 255),
                   'droop': (255, 255, 0)}
     img_c = imgcv.copy()
     cv2.line(img_c, (x1 , y1), (x1, y1 - y_diff), color_dict[lbl], 3)

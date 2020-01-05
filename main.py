@@ -13,18 +13,18 @@ from utils.utils import *
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-SETPOINT = float(config['RLCONTROL']['SETPOINT'])
 
-N_INPUTS = 21
-N_HIDDEN = 4
-N_OUTPUTS = 1
-LR = 0.01
-CYCLE_TIME = 180
-N_GAMES_UPDATE = 2
-N_MAX_STEPS = 6
-SAVE_ITER = 2
-DISCOUNT_RATE = 0.5
-CKPT_PATH = './policies/my_policy_net_pg.ckpt'
+SETPOINT = float(config['RLCONTROL']['SETPOINT'])
+N_INPUTS = int(config['RLCONTROL']['N_INPUTS'])
+N_HIDDEN = int(config['RLCONTROL']['N_HIDDEN'])
+N_OUTPUTS = int(config['RLCONTROL']['N_OUTPUTS'])
+LR = float(config['RLCONTROL']['LR'])
+CYCLE_TIME = int(config['RLCONTROL']['CYCLE_TIME'])
+N_GAMES_UPDATE = int(config['RLCONTROL']['N_GAMES_UPDATE'])
+N_MAX_STEPS = int(config['RLCONTROL']['N_MAX_STEPS'])
+SAVE_ITER = int(config['RLCONTROL']['SAVE_ITER'])
+DISCOUNT_RATE = float(config['RLCONTROL']['DISCOUNT_RATE'])
+CKPT_PATH = config['PATHS']['CKPT_PATH']
 
 
 initializer = tf.variance_scaling_initializer()
