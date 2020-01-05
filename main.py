@@ -89,7 +89,7 @@ def action_reward(action, setpoint=SETPOINT, threshold=2):
     else:
         reward = - np.abs(temp - setpoint)
 
-    c.execute("""insert into db values (?, ?, ?, ?, ?, ?)""", (tm_stp, temp, hum, reward, vpd_val, comm))
+    c.execute("""insert into rl values (?, ?, ?, ?, ?, ?)""", (tm_stp, temp, hum, reward, vpd_val, comm))
     conn.commit()
     c.close()
     return reward

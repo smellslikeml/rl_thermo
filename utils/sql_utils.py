@@ -107,9 +107,7 @@ def alert_check(stat, dev=1):
 if __name__ == '__main__':
     table_dict = {'environ':'(date date, temp real, hum real, vpd real)',
                   'devices':'(date text, plug int, duration real, energy_consumption real)',
-                  'kindbot':'(date text, temp real, humid real, pid real, vpd real, ac text)',
-                  'objects':'(img text, date text, flower int, yellow int, droop int, lai real)',
-                  'alerts':'(date text, level real, alert text)'}
+                  'rl':'(date text, temp real, humid real, pid real, vpd real, ac text)'}
     BUILD_TBLS = False
     if BUILD_TBLS:
         for table_name, schema_tup in table_dict.items():
